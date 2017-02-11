@@ -14,10 +14,10 @@ import requests
 import threading
 
 from .exceptions import InteropError
-from .types import Mission
-from .types import MovingObstacle
-from .types import StationaryObstacle
-from .types import Target
+from .interop_types import Mission
+from .interop_types import MovingObstacle
+from .interop_types import StationaryObstacle
+from .interop_types import Target
 
 
 class Client(object):
