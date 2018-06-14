@@ -168,7 +168,7 @@ class Client(object):
             requests.Timeout: Request timeout.
             ValueError or AttributeError: Malformed response from server.
         """
-        r = self.get('/api/targets')
+        r = self.get('/api/odlcs')
         return [Target.deserialize(t) for t in r.json()]
 
     def get_target(self, target_id):
@@ -183,7 +183,7 @@ class Client(object):
             requests.Timeout: Request timeout.
             ValueError or AttributeError: Malformed response from server.
         """
-        r = self.get('/api/targets/%d' % target_id)
+        r = self.get('/api/odlcs/%d' % target_id)
         return Target.deserialize(r.json())
 
     def post_target(self, target):
@@ -198,7 +198,7 @@ class Client(object):
             requests.Timeout: Request timeout.
             ValueError or AttributeError: Malformed response from server.
         """
-        r = self.post('/api/targets', data=json.dumps(target.serialize()))
+        r = self.post('/api/odlcs', data=json.dumps(target.serialize()))
         return Target.deserialize(r.json())
 
     def put_target(self, target_id, target):
@@ -214,7 +214,7 @@ class Client(object):
             requests.Timeout: Request timeout.
             ValueError or AttributeError: Malformed response from server.
         """
-        r = self.put('/api/targets/%d' % target_id,
+        r = self.put('/api/odlcs/%d' % target_id,
                      data=json.dumps(target.serialize()))
         return Target.deserialize(r.json())
 
@@ -227,7 +227,7 @@ class Client(object):
             InteropError: Error from server.
             requests.Timeout: Request timeout.
         """
-        self.delete('/api/targets/%d' % target_id)
+        self.delete('/api/odlcs/%d' % target_id)
 
     def get_target_image(self, target_id):
         """GET target image.
@@ -240,7 +240,7 @@ class Client(object):
             InteropError: Error from server.
             requests.Timeout: Request timeout.
         """
-        return self.get('/api/targets/%d/image' % target_id).content
+        return self.get('/api/odlcs/%d/image' % target_id).content
 
     def post_target_image(self, target_id, image_data):
         """POST target image. Image must be PNG or JPEG data.
@@ -264,7 +264,7 @@ class Client(object):
             InteropError: Error from server.
             requests.Timeout: Request timeout.
         """
-        self.put('/api/targets/%d/image' % target_id, data=image_data)
+        self.put('/api/odlcs/%d/image' % target_id, data=image_data)
 
     def delete_target_image(self, target_id):
         """DELETE target image.
@@ -275,7 +275,7 @@ class Client(object):
             InteropError: Error from server.
             requests.Timeout: Request timeout.
         """
-        self.delete('/api/targets/%d/image' % target_id)
+        self.delete('/api/odlcs/%d/image' % target_id)
 
 
 class AsyncClient(object):

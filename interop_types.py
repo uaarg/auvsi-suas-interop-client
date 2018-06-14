@@ -130,7 +130,7 @@ class Mission(ClientBaseType):
         fly_zones: A list of FlyZone boundaries the UAS must be within.
         home_pos: The GpsPosition of the UAS launch point (tents).
         mission_waypoints: A list of Waypoint the UAS must traverse.
-        off_axis_target_pos: The GpsPosition of the off-axis target.
+        off_axis_odlc_pos: The GpsPosition of the off-axis target.
         emergent_last_known_pos: The last known GpsPosition of the emergent
             target.
         search_grid_points: List of Waypoint defining the search grid polygon.
@@ -140,11 +140,11 @@ class Mission(ClientBaseType):
     """
 
     attrs = ['id', 'active', 'air_drop_pos', 'fly_zones', 'home_pos',
-             'mission_waypoints', 'off_axis_target_pos',
+             'mission_waypoints', 'off_axis_odlc_pos',
              'emergent_last_known_pos', 'search_grid_points']
 
     def __init__(self, id, active, air_drop_pos, fly_zones, home_pos,
-                 mission_waypoints, off_axis_target_pos,
+                 mission_waypoints, off_axis_odlc_pos,
                  emergent_last_known_pos, search_grid_points):
         self.id = int(id)
         self.active = bool(active)
@@ -153,7 +153,7 @@ class Mission(ClientBaseType):
         self.home_pos = GpsPosition.deserialize(home_pos)
         self.mission_waypoints = [Waypoint.deserialize(mw)
                                   for mw in mission_waypoints]
-        self.off_axis_target_pos = GpsPosition.deserialize(off_axis_target_pos)
+        self.off_axis_odlc_pos = GpsPosition.deserialize(off_axis_odlc_pos)
         self.emergent_last_known_pos = GpsPosition.deserialize(
             emergent_last_known_pos)
         self.search_grid_points = [Waypoint.deserialize(sg)
